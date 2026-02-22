@@ -1,0 +1,42 @@
+#HR Workforce Analytics Project
+#Author: ELIJAH MAINGI
+#Description: Analysis of worforce structure and salary alignment
+
+library(ggplot2)
+#workforce structure
+ggplot(staff, aes(x = experience_level, fill = experience_level)) +
+  geom_bar() +
+  labs(title = "Workforce Structure by Experience Level",
+       x = "Experience level",
+       y = "Number of employees")
+
+#Salary distribution
+ggplot(staff, aes(x = salary_level, fill = salary_level)) +
+  geom_bar() +
+  labs(title = "Salary Distribution Across Levels",
+       x = "Salary level",
+       y = "Number of employees")
+
+#Experience vs salary relationship
+ggplot(staff, aes(x = experience, y = salary)) +
+  geom_point(size = 3) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Experience vs Salary Relationship",
+       x = "Years of experience",
+       y = "Salary (KES)")
+
+#Salary inequality by experience level
+ggplot(staff, aes(x = experience_level, y = salary, fill = experience_level)) +
+  geom_boxplot() +
+  labs(title = "Salary Distribution by Experience Level",
+       x = "Experience level",
+       y = "Salary (KES)")
+
+#Overall salary distribution
+ggplot(staff, aes(y = salary)) +
+  geom_boxplot() +
+  labs(title = "Overall Salary Distribution",
+       y = "Salary (KES)")
+
+#Correlation Analysis
+cor(staff$experience, staff$salary)
